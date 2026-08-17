@@ -10,7 +10,7 @@ import CertificationsEditor from '../editor/CertificationEditor';
 import ATSScore from '../ats/ATSScore';
 
 const EditorPanel: React.FC = () => {
-  const { activeSection } = useResume();
+    const { activeSection } = useResume();
 
     const renderEditor = () => {
         switch (activeSection) {
@@ -36,9 +36,9 @@ const EditorPanel: React.FC = () => {
     };
 
     return (
-    <div className="bg-white rounded-xl shadow-card p-6 h-[calc(100vh-140px)] overflow-y-auto">
-        {renderEditor()}
-    </div>
+        <div className="bg-white rounded-xl shadow-card p-6 h-[calc(100vh-140px)] overflow-y-auto">
+            {renderEditor()}
+        </div>
     );
 };
 

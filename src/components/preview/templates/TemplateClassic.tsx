@@ -6,7 +6,7 @@ interface TemplateProps {
 }
 
 const TemplateClassic: React.FC<TemplateProps> = ({ resume }) => {
-    const {personal, summary, experience, education, skills, certifications } = resume;
+    const { personal, summary, experience, education, skills, certifications } = resume;
 
     return (
         <div className="p-8 max-w-[800px] mx-auto">
@@ -71,7 +71,7 @@ const TemplateClassic: React.FC<TemplateProps> = ({ resume }) => {
                                 {skills.map((skill) => (
                                     <span key={skill.id} className="text-sm text-gray-700">
                                         {skill.name}
-                                        {skill !== skills[skills.length -1] && ' • '}
+                                        {skill !== skills[skills.length - 1] && ' • '}
                                     </span>
                                 ))}
                             </div>
@@ -94,7 +94,7 @@ const TemplateClassic: React.FC<TemplateProps> = ({ resume }) => {
                             ))}
                         </section>
                     )}
-                    { certifications.length > 0 && (
+                    {certifications.length > 0 && (
                         <section>
                             <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-2 border-b border-gray-200 pb-1">
                                 Certifications

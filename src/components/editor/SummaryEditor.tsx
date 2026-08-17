@@ -23,11 +23,11 @@ const SummaryEditor: React.FC = () => {
                     Summary <span className="text-gray-400">({wordCount} words)</span>
                 </label>
                 <textarea
-                value={resume.summary}
-                onChange={(e) => updateSummary(e.target.value)}
-                rows={8}
-                className="input-field resize-none"
-                placeholder="Experienced professional with a proven track record..."
+                    value={resume.summary}
+                    onChange={(e) => updateSummary(e.target.value)}
+                    rows={8}
+                    className="input-field resize-none"
+                    placeholder="Experienced professional with a proven track record..."
                 />
                 <div className="mt-2 flex justify-between text-sm text-gray-500">
                     <span>Pro tip: Keep it concise and highlight key achivements</span>

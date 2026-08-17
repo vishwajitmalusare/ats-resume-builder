@@ -44,8 +44,8 @@ const ProjectEditor: React.FC = () => {
                     </div>
                 </div>
                 <button
-                onClick={handleAdd}
-                className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all"
+                    onClick={handleAdd}
+                    className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all"
                 >
                     <FaPlus />
                     Add Project
@@ -61,95 +61,95 @@ const ProjectEditor: React.FC = () => {
                                     <div>
                                         <label className="block text-xs font-medium text-gray-500 mb-1">Project Name</label>
                                         <input
-                                        type="text"
-                                        value={project.name}
-                                        onChange={(e) => updateProject(project.id, { name: e.target.value })}
-                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
+                                            type="text"
+                                            value={project.name}
+                                            onChange={(e) => updateProject(project.id, { name: e.target.value })}
+                                            className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-xs font-medium text-gray-500 mb-1">Link (optional)</label>
                                         <input
-                                        type="text"
-                                        value={project.link || ''}
-                                        onChange={(e) => updateProject(project.id, { link: e.target.value })}
-                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
-                                        placeholder="github.com/project"
+                                            type="text"
+                                            value={project.link || ''}
+                                            onChange={(e) => updateProject(project.id, { link: e.target.value })}
+                                            className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
+                                            placeholder="github.com/project"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                  <label className="block text-xs font-medium text-gray-500 mb-1">Description</label>
-                                  <textarea
-                                  value={project.description}
-                                  onChange={(e) => updateProject(project.id, { description: e.target.value })}
-                                  rows={2}
-                                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm resize-none"
-                                  />
+                                    <label className="block text-xs font-medium text-gray-500 mb-1">Description</label>
+                                    <textarea
+                                        value={project.description}
+                                        onChange={(e) => updateProject(project.id, { description: e.target.value })}
+                                        rows={2}
+                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm resize-none"
+                                    />
                                 </div>
 
                                 <div>
-                                  <label className="block text-xs font-medium text-gray-500 mb-1">Tech Stack</label>
-                                  <div className="flex flex-wrap gap-2 mb-2">
-                                    {project.techStack.map((tech, idx) => (
-                                      <span
-                                      key={idx}
-                                      className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded text-sm"
-                                      >{tech}
-                                      <button
-                                      onClick={() => handleRemoveTech(project.id, idx)}
-                                      className="text-red-500 hover:text-red-700"
-                                      >
-                                        <FaTrash className="text-xs" />
-                                      </button>
-                                      </span>
-                                    ))}
-                                  </div>
-                                  <div className="flex gap-2">
-                                    <input
-                                    type="text"
-                                    placeholder="Add technology..."
-                                    className="flex-1 px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
-                                    onKeyPress={(e) => {
-                                      if(e.key === "Enter") {
-                                        const input = e.target as HTMLInputElement;
-                                        handleAddTech(project.id, input.value);
-                                        input.value = '';
-                                      }
-                                    }}
-                                    />
-                                    <button
-                                    onClick={(e) => {
-                                      const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                                      if (input) {
-                                        handleAddTech(project.id, input.value);
-                                        input.value = '';
-                                      }
-                                    }}
-                                    className="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors"
-                                    >
-                                      <FaPlus className="text-sm" />
-                                    </button>
-                                  </div>
+                                    <label className="block text-xs font-medium text-gray-500 mb-1">Tech Stack</label>
+                                    <div className="flex flex-wrap gap-2 mb-2">
+                                        {project.techStack.map((tech, idx) => (
+                                            <span
+                                                key={idx}
+                                                className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded text-sm"
+                                            >{tech}
+                                                <button
+                                                    onClick={() => handleRemoveTech(project.id, idx)}
+                                                    className="text-red-500 hover:text-red-700"
+                                                >
+                                                    <FaTrash className="text-xs" />
+                                                </button>
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            placeholder="Add technology..."
+                                            className="flex-1 px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
+                                            onKeyPress={(e) => {
+                                                if (e.key === "Enter") {
+                                                    const input = e.target as HTMLInputElement;
+                                                    handleAddTech(project.id, input.value);
+                                                    input.value = '';
+                                                }
+                                            }}
+                                        />
+                                        <button
+                                            onClick={(e) => {
+                                                const input = e.currentTarget.previousElementSibling as HTMLInputElement;
+                                                if (input) {
+                                                    handleAddTech(project.id, input.value);
+                                                    input.value = '';
+                                                }
+                                            }}
+                                            className="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors"
+                                        >
+                                            <FaPlus className="text-sm" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <button 
-                            onClick={() => removeProject(project.id)}
-                            className="text-red-500 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors ml-4"
+
+                            <button
+                                onClick={() => removeProject(project.id)}
+                                className="text-red-500 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors ml-4"
                             >
-                              <FaTrash />
+                                <FaTrash />
                             </button>
                         </div>
                     </div>
                 ))}
 
                 {resume.projects.length === 0 && (
-                  <div className="text-center py-12 text-gray-500">
-                    <p className="text-lg mb-2">No project added yet</p>
-                    <p className="text-sm">Click "Add Project" to showcase your work</p>
-                  </div>
+                    <div className="text-center py-12 text-gray-500">
+                        <p className="text-lg mb-2">No project added yet</p>
+                        <p className="text-sm">Click "Add Project" to showcase your work</p>
+                    </div>
                 )}
             </div>
         </div>

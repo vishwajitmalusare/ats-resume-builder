@@ -108,7 +108,7 @@ export class ExportService {
               alignment: AlignmentType.CENTER,
               spacing: { after: 150 },
             }),
-            
+
             ...(resumeData.summary ? [
               new Paragraph({
                 children: [
@@ -133,54 +133,54 @@ export class ExportService {
             ] : []),
 
             ...(resumeData.experience && resumeData.experience.length > 0 ? [
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: 'WORK EXPERIENCE',
-                  bold: true,
-                  size: 18,
-                  color: '2563eb'
-                }),
-              ],
-              spacing: { before: 150, after: 80 },
-            }),
-            ...resumeData.experience.slice(0, 3).flatMap((exp) => [
               new Paragraph({
                 children: [
                   new TextRun({
-                    text: exp.position || 'Position',
+                    text: 'WORK EXPERIENCE',
                     bold: true,
                     size: 18,
-                  }),
-                  new TextRun({
-                    text: `  |  ${exp.company || 'Company'}`,
-                    size: 17,
-                  })
-                ],
-                spacing: { before: 120 },
-              }),
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: `${exp.startDate || ''} - ${exp.current ? 'Present' : exp.endDate || ''}`,
-                    size: 14,
-                    color: '666666',
+                    color: '2563eb'
                   }),
                 ],
-                spacing: { after: 40 },
+                spacing: { before: 150, after: 80 },
               }),
-              ...(exp.description && exp.description.length > 0 ? exp.description.slice(0, 4).map((bullet: string) =>
+              ...resumeData.experience.slice(0, 3).flatMap((exp) => [
                 new Paragraph({
                   children: [
                     new TextRun({
-                      text: `●  ${bullet}`,
+                      text: exp.position || 'Position',
+                      bold: true,
+                      size: 18,
+                    }),
+                    new TextRun({
+                      text: `  |  ${exp.company || 'Company'}`,
                       size: 17,
+                    })
+                  ],
+                  spacing: { before: 120 },
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: `${exp.startDate || ''} - ${exp.current ? 'Present' : exp.endDate || ''}`,
+                      size: 14,
+                      color: '666666',
                     }),
                   ],
-                  spacing: { before: 20 },
-                })
-            ) : []),
-            ]),
+                  spacing: { after: 40 },
+                }),
+                ...(exp.description && exp.description.length > 0 ? exp.description.slice(0, 4).map((bullet: string) =>
+                  new Paragraph({
+                    children: [
+                      new TextRun({
+                        text: `●  ${bullet}`,
+                        size: 17,
+                      }),
+                    ],
+                    spacing: { before: 20 },
+                  })
+                ) : []),
+              ]),
             ] : []),
 
             ...(resumeData.skills && resumeData.skills.length > 0 ? [
@@ -262,70 +262,70 @@ export class ExportService {
       console.log('DOCX Export Error:', error);
       throw new Error('Failed to export DOCX');
     }
-};
+  };
 
-async exportAsText(resumeData: ResumeData, filename: string = 'resume.txt'): Promise<void> {
-  const text = this.generatePlainText(resumeData);
-  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-  const { saveAs } = await import('file-saver');
-  saveAs(blob, filename);
-}
+  async exportAsText(resumeData: ResumeData, filename: string = 'resume.txt'): Promise<void> {
+    const text = this.generatePlainText(resumeData);
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const { saveAs } = await import('file-saver');
+    saveAs(blob, filename);
+  }
 
-private generatePlainText(resume: ResumeData): string {
-  const lines = [];
+  private generatePlainText(resume: ResumeData): string {
+    const lines = [];
 
-  lines.push(`${resume.personal.firstName || ''} ${resume.personal.lastName || ''}`.trim());
-  lines.push(resume.personal.title || 'Professional');
-  lines.push(`${resume.personal.email || ''} | ${resume.personal.phone || ''} | ${resume.personal.location || ''}`);
-  lines.push('');
-  lines.push('='.repeat(50));
-  lines.push('');
-
-  if (resume.summary) {
-    lines.push('PROFESSIONAL SUMMARY');
-    lines.push('-'.repeat(30));
-    lines.push(resume.summary);
+    lines.push(`${resume.personal.firstName || ''} ${resume.personal.lastName || ''}`.trim());
+    lines.push(resume.personal.title || 'Professional');
+    lines.push(`${resume.personal.email || ''} | ${resume.personal.phone || ''} | ${resume.personal.location || ''}`);
     lines.push('');
-  }
-
-  if (resume.experience && resume.experience.length > 0) {
-    lines.push('WORK EXPERIENCE');
-    lines.push('-'.repeat(30));
-    resume.experience.slice(0, 3).forEach(exp => {
-      lines.push(`${exp.position} | ${exp.company}`);
-      lines.push(`${exp.startDate || ''} - ${exp.current ? 'Present' : exp.endDate || ''}`);
-      if (exp.description) {
-        exp.description.slice(0, 4).forEach(bullet => {
-          lines.push(`  - ${bullet}`);
-        });
-      }
-      lines.push('');
-    });
-  }
-  
-  if (resume.skills && resume.skills.length > 0) {
-    lines.push('SKILLS');
-    lines.push('-'.repeat(30));
-    const tech = resume.skills.filter(s => s.category === 'technical').slice(0, 10).map(s => s.name);
-    const soft = resume.skills.filter(s => s.category === 'soft').slice(0, 5).map(s => s.name);
-    const lang = resume.skills.filter(s => s.category === 'language').slice(0, 3).map(s => s.name);
-    if (tech.length) lines.push(`Technical: ${tech.join(', ')}`);
-    if (soft.length) lines.push(`Soft: ${soft.join(', ')}`);
-    if (lang.length) lines.push(`Languages: ${lang.join(', ')}`);
+    lines.push('='.repeat(50));
     lines.push('');
-  }
 
-  if (resume.education && resume.education.length > 0) {
-    lines.push('EDUCATION');
-    lines.push('-'.repeat(30));
-    resume.education.slice(0, 2).forEach(edu => {
-      lines.push(`${edu.degree || 'Degree'} in ${edu.field || 'Field'}`);
-      lines.push(`${edu.institution || 'Institution'}`);
-      lines.push(`${edu.graduationDate || ''}`);
+    if (resume.summary) {
+      lines.push('PROFESSIONAL SUMMARY');
+      lines.push('-'.repeat(30));
+      lines.push(resume.summary);
       lines.push('');
-    });
+    }
+
+    if (resume.experience && resume.experience.length > 0) {
+      lines.push('WORK EXPERIENCE');
+      lines.push('-'.repeat(30));
+      resume.experience.slice(0, 3).forEach(exp => {
+        lines.push(`${exp.position} | ${exp.company}`);
+        lines.push(`${exp.startDate || ''} - ${exp.current ? 'Present' : exp.endDate || ''}`);
+        if (exp.description) {
+          exp.description.slice(0, 4).forEach(bullet => {
+            lines.push(`  - ${bullet}`);
+          });
+        }
+        lines.push('');
+      });
+    }
+
+    if (resume.skills && resume.skills.length > 0) {
+      lines.push('SKILLS');
+      lines.push('-'.repeat(30));
+      const tech = resume.skills.filter(s => s.category === 'technical').slice(0, 10).map(s => s.name);
+      const soft = resume.skills.filter(s => s.category === 'soft').slice(0, 5).map(s => s.name);
+      const lang = resume.skills.filter(s => s.category === 'language').slice(0, 3).map(s => s.name);
+      if (tech.length) lines.push(`Technical: ${tech.join(', ')}`);
+      if (soft.length) lines.push(`Soft: ${soft.join(', ')}`);
+      if (lang.length) lines.push(`Languages: ${lang.join(', ')}`);
+      lines.push('');
+    }
+
+    if (resume.education && resume.education.length > 0) {
+      lines.push('EDUCATION');
+      lines.push('-'.repeat(30));
+      resume.education.slice(0, 2).forEach(edu => {
+        lines.push(`${edu.degree || 'Degree'} in ${edu.field || 'Field'}`);
+        lines.push(`${edu.institution || 'Institution'}`);
+        lines.push(`${edu.graduationDate || ''}`);
+        lines.push('');
+      });
+    }
+
+    return lines.join('\n');
   }
-   
-  return lines.join('\n');
-}
 }

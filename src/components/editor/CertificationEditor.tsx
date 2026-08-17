@@ -1,5 +1,5 @@
 import React from "react";
-import { useResume } from "../../context/ResumeContext"; 
+import { useResume } from "../../context/ResumeContext";
 import { FaCertificate, FaPlus, FaTrash } from "react-icons/fa";
 
 const CertificationsEditor: React.FC = () => {
@@ -26,8 +26,8 @@ const CertificationsEditor: React.FC = () => {
                     </div>
                 </div>
                 <button
-                onClick={handleAdd}
-                className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all"
+                    onClick={handleAdd}
+                    className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all"
                 >
                     <FaPlus />
                     Add Certification
@@ -42,56 +42,56 @@ const CertificationsEditor: React.FC = () => {
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-1">Certification Name</label>
                                     <input
-                                    type="text"
-                                    value={cert.name}
-                                    onChange={(e) => {
-                                        const newCert = {...cert, name: e.target.value };
-                                        const index = resume.certifications.findIndex(c => c.id === cert.id);
-                                        if (index !== -1) {
-                                            const updated = [...resume.certifications];
-                                            updated[index] = newCert;
-                                        }
-                                    }}
-                                    className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
+                                        type="text"
+                                        value={cert.name}
+                                        onChange={(e) => {
+                                            const newCert = { ...cert, name: e.target.value };
+                                            const index = resume.certifications.findIndex(c => c.id === cert.id);
+                                            if (index !== -1) {
+                                                const updated = [...resume.certifications];
+                                                updated[index] = newCert;
+                                            }
+                                        }}
+                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-1">Issuer</label>
                                     <input
-                                    type="text"
-                                    value={cert.issuer}
-                                    onChange={(e) => {
-                                        const newCert = { ...cert, issuer: e.target.value };
-                                        const index = resume.certifications.findIndex(c => c.id === cert.id);
-                                        if (index !== -1) {
-                                            const updated = [...resume.certifications];
-                                            updated[index] = newCert;
-                                        }
-                                    }}
+                                        type="text"
+                                        value={cert.issuer}
+                                        onChange={(e) => {
+                                            const newCert = { ...cert, issuer: e.target.value };
+                                            const index = resume.certifications.findIndex(c => c.id === cert.id);
+                                            if (index !== -1) {
+                                                const updated = [...resume.certifications];
+                                                updated[index] = newCert;
+                                            }
+                                        }}
                                         className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-1">Date Earned</label>
                                     <input
-                                    type="month"
-                                    value={cert.date}
-                                    onChange={(e) => {
-                                        const newCert = { ...cert, date: e.target.value };
-                                        const index = resume.certifications.findIndex(c => c.id === cert.id);
-                                        if (index !== -1) {
-                                            const updated = [...resume.certifications];
-                                            updated[index] = newCert;
-                                        }
-                                    }}
-                                    className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
+                                        type="month"
+                                        value={cert.date}
+                                        onChange={(e) => {
+                                            const newCert = { ...cert, date: e.target.value };
+                                            const index = resume.certifications.findIndex(c => c.id === cert.id);
+                                            if (index !== -1) {
+                                                const updated = [...resume.certifications];
+                                                updated[index] = newCert;
+                                            }
+                                        }}
+                                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-sm"
                                     />
                                 </div>
                             </div>
 
                             <button
-                            onClick={() => removeCertification(cert.id)}
-                            className="text-red-500 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors ml-4"
+                                onClick={() => removeCertification(cert.id)}
+                                className="text-red-500 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors ml-4"
                             >
                                 <FaTrash />
                             </button>
