@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useResume } from "../../context/ResumeContext";
 import { useTemplate } from "../../context/TemplateContext";
 import { ExportService } from "../../services/exportService";
@@ -11,19 +11,23 @@ const PreviewPanel: React.FC = () => {
     const [zoom, setZoom] = useState(1);
     const [fileSize, setFileSize] = useState<string>('');
     const [exporting, setExporting] = useState<'pdf' | 'docx' | 'txt' | null>(null);
-    const previewRef = useRef<HTMLDivElement>(null);
     const exportService = new ExportService();
 
-    const estimateFileSize = () => {
+    useEffect(() => {
         const text = JSON.stringify(resume);
         const sizeInBytes = new Blob([text]).size;
-        if (sizeInBytes < 1024) return `${sizeInBytes} B`;
-        if (sizeInBytes < 1048576) return `${(sizeInBytes / 1024).toFixed(1)} KB`;
-        return `${(sizeInBytes / 1048576).toFixed(1)} MB`;
-    }
 
-    useEffect(() => {
-        setFileSize(estimateFileSize());
+        let size;
+
+        if (sizeInBytes < 1024) {
+            size = `${sizeInBytes} B`;
+        } else if (sizeInBytes < 1048576) {
+            size = `${(sizeInBytes / 1024).toFixed(1)} KB`;
+        } else {
+            size = `${(sizeInBytes / 1048576).toFixed(1)} MB`;
+        }
+
+        setFileSize(size);
     }, [resume]);
 
     const handleExportPDF = async () => {

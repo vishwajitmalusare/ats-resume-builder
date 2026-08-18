@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ResumeData } from '../types/resume.types';
 
 export class ExportService {
