@@ -103,16 +103,16 @@ const PreviewPanel: React.FC = () => {
                 </button>
             </div>
 
-        <div className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 rounded-lg p-2">
-            <div className="transition-transform duration-200 origin-top" style={{ transform: `scale(${zoom})` }}>
-                <ResumePreview />
+            <div className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 rounded-lg p-2">
+                <div className="transition-transform duration-200 origin-top" style={{ transform: `scale(${zoom})` }}>
+                    <ResumePreview />
+                </div>
             </div>
-        </div>
 
-        <div className="mt-2 pt-2 border-gray-100 flex justify-between text-[10px] text-gray-400">
-            <span>💡 ATS-friendly: Simple formatting, standard fonts, under 500KB</span>
-            <span>📏 {fileSize} estimated file size</span>
-        </div>
+            <div className="mt-2 pt-2 border-gray-100 flex justify-between text-[10px] text-gray-400">
+                <span>💡 ATS-friendly: Simple formatting, standard fonts, under 500KB</span>
+                <span>📏 {fileSize} estimated file size</span>
+            </div>
         </div>
     );
 };

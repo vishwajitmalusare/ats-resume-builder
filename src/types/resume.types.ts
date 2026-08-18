@@ -21,13 +21,13 @@ export interface Experience {
 }
 
 export interface Education {
-    id: string;
-    institution: string;
-    degree: string;
-    field: string;
-    graduationDate: string;
-    gpa?: string;
-    location?: string;
+  id: string;
+  institution: string;
+  degree: string;
+  field: string;
+  graduationDate: string;
+  gpa?: string;
+  location?: string;
 }
 
 export interface Skill {

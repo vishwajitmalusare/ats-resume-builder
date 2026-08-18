@@ -2,7 +2,7 @@ import React from "react";
 import type { ResumeData } from "../../../types/resume.types";
 
 interface TemplateProps {
-  resume: ResumeData;
+    resume: ResumeData;
 }
 
 const TemplateModern: React.FC<TemplateProps> = ({ resume }) => {
@@ -91,54 +91,53 @@ const TemplateModern: React.FC<TemplateProps> = ({ resume }) => {
                 </div>
 
                 <div className="col-span-1 space-y-3">
-                {limitedSkills.length > 0 && (
-                    <section>
-                        <h3 className="text-[10px] font-semibold text-gray-800 uppercase tracking-wider mb-1.5">Skills</h3>
-                        <div className="flex flex-wrap gap-1">
-                            {limitedSkills.slice(0, 10).map((skill) => (
-                                <span
-                                    key={skill.id}
-                                    className={`text-[10px] px-2 py-0.5 rounded-full ${
-                                        skill.category === 'technical'
-                                            ? 'bg-primary-100 text-primary-700'
-                                            : skill.category === 'soft'
-                                            ? 'bg-green-100 text-green-700'
-                                            : 'bg-purple-100 text-purple-700'
-                                    }`}
-                                >
-                                    {skill.name}
-                                </span>
+                    {limitedSkills.length > 0 && (
+                        <section>
+                            <h3 className="text-[10px] font-semibold text-gray-800 uppercase tracking-wider mb-1.5">Skills</h3>
+                            <div className="flex flex-wrap gap-1">
+                                {limitedSkills.slice(0, 10).map((skill) => (
+                                    <span
+                                        key={skill.id}
+                                        className={`text-[10px] px-2 py-0.5 rounded-full ${skill.category === 'technical'
+                                                ? 'bg-primary-100 text-primary-700'
+                                                : skill.category === 'soft'
+                                                    ? 'bg-green-100 text-green-700'
+                                                    : 'bg-purple-100 text-purple-700'
+                                            }`}
+                                    >
+                                        {skill.name}
+                                    </span>
+                                ))}
+                                {limitedSkills.length > 10 && (
+                                    <span className="text-[10px] text-gray-400">+{limitedSkills.length - 10} more</span>
+                                )}
+                            </div>
+                        </section>
+                    )}
+
+                    {education.length > 0 && (
+                        <section>
+                            <h3 className="text-[10px] font-semibold text-gray-800 uppercase tracking-wider mb-1.5">Education</h3>
+                            {education.slice(0, 2).map((edu) => (
+                                <div key={edu.id} className="mb-1.5">
+                                    <h4 className="font-semibold text-gray-800 text-[11px]">{edu.degree}</h4>
+                                    <p className="text-[11px] text-gray-600">{edu.institution}</p>
+                                </div>
                             ))}
-                            {limitedSkills.length > 10 && (
-                                <span className="text-[10px] text-gray-400">+{limitedSkills.length - 10} more</span>
-                            )}
-                        </div>
-                    </section>
-                )}
+                        </section>
+                    )}
 
-                {education.length > 0 && (
-                    <section>
-                        <h3 className="text-[10px] font-semibold text-gray-800 uppercase tracking-wider mb-1.5">Education</h3>
-                        {education.slice(0, 2).map((edu) => (
-                            <div key={edu.id} className="mb-1.5">
-                                <h4 className="font-semibold text-gray-800 text-[11px]">{edu.degree}</h4>
-                                <p className="text-[11px] text-gray-600">{edu.institution}</p>
-                            </div>
-                        ))}
-                    </section>
-                )}
-
-                {limitedCertifications.length > 0 && (
-                    <section>
-                        <h3 className="text-[10px] font-semibold text-gray-800 uppercase tracking-wider mb-1.5">Certifications</h3>
-                        {limitedCertifications.map((cert) => (
-                            <div key={cert.id} className="mb-1">
-                                <p className="font-medium text-[11px] text-gray-800">{cert.name}</p>
-                                <p className="text-[10px] text-gray-600">{cert.issuer}</p>
-                            </div>
-                        ))}
-                    </section>
-                )}
+                    {limitedCertifications.length > 0 && (
+                        <section>
+                            <h3 className="text-[10px] font-semibold text-gray-800 uppercase tracking-wider mb-1.5">Certifications</h3>
+                            {limitedCertifications.map((cert) => (
+                                <div key={cert.id} className="mb-1">
+                                    <p className="font-medium text-[11px] text-gray-800">{cert.name}</p>
+                                    <p className="text-[10px] text-gray-600">{cert.issuer}</p>
+                                </div>
+                            ))}
+                        </section>
+                    )}
                 </div>
             </div>
         </div>

@@ -2,29 +2,29 @@ import React from "react";
 import type { ResumeData } from "../../../types/resume.types";
 
 interface TemplateProps {
-    resume: ResumeData;
+  resume: ResumeData;
 }
 
 const TemplateMinimal: React.FC<TemplateProps> = ({ resume }) => {
-    const { personal, summary, experience, education, skills } = resume;
+  const { personal, summary, experience, education, skills } = resume;
 
-    return (
-        <div className="p-8 max-w-[800px] mx-auto">
-            <div className="mb-6">
-                <h1 className="text-4xl font-light text-gray-900">
-                    {personal.firstName} {personal.lastName}
-                </h1>
-                <p className="text-lg text-gray-500 mt-1">{personal.title}</p>
-                <div className="flex flex-wrap gap-4 mt-3 text-sm text-gray-500">
-                    <span>{personal.email}</span>
-                    <span>{personal.phone}</span>
-                    <span>{personal.location}</span>
-                </div>
-            </div>
+  return (
+    <div className="p-8 max-w-[800px] mx-auto">
+      <div className="mb-6">
+        <h1 className="text-4xl font-light text-gray-900">
+          {personal.firstName} {personal.lastName}
+        </h1>
+        <p className="text-lg text-gray-500 mt-1">{personal.title}</p>
+        <div className="flex flex-wrap gap-4 mt-3 text-sm text-gray-500">
+          <span>{personal.email}</span>
+          <span>{personal.phone}</span>
+          <span>{personal.location}</span>
+        </div>
+      </div>
 
-                  <hr className="border-gray-200 mb-6" />
+      <hr className="border-gray-200 mb-6" />
 
-{summary && (
+      {summary && (
         <section className="mb-6">
           <p className="text-sm text-gray-600 leading-relaxed">{summary}</p>
         </section>
@@ -90,10 +90,8 @@ const TemplateMinimal: React.FC<TemplateProps> = ({ resume }) => {
           </section>
         )}
       </div>
-        </div>
-
-        
-    );
+    </div>
+  );
 };
 
 export default TemplateMinimal;
