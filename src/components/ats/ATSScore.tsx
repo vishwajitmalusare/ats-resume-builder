@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useResume } from '../../context/ResumeContext';
 import { ATSService } from '../../services/atsService';
 
+const ats = new ATSService();
+
 const ATSScore: React.FC = () => {
     const { resume } = useResume();
     const [result, setResult] = useState<any>(null);
@@ -9,7 +11,6 @@ const ATSScore: React.FC = () => {
     const [keywordMatch, setKeywordMatch] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [tab, setTab] = useState<'score' | 'match'>('score');
-    const ats = new ATSService();
 
     useEffect(() => {
         setLoading(true);
