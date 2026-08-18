@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useResume } from "../../context/ResumeContext";
 import { FaProjectDiagram, FaPlus, FaTrash } from "react-icons/fa";
 

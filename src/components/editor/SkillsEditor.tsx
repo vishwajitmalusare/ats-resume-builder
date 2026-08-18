@@ -23,19 +23,6 @@ const SkillsEditor: React.FC = () => {
         }
     };
 
-    const getCategoryColor = (cat: string) => {
-        switch (cat) {
-            case 'technical':
-                return 'bg-primary-100 text-primary-700';
-            case 'soft':
-                return 'bg-green-100 test-green-700';
-            case 'language':
-                return 'bg-purple-100 text-purple-700';
-            default:
-                return 'bg-gray-100 text-gray-700'
-        }
-    };
-
     const technicalSkills = resume.skills.filter(s => s.category === 'technical');
     const softSkills = resume.skills.filter(s => s.category === 'soft');
     const languageSkills = resume.skills.filter(s => s.category === 'language');
